@@ -28,7 +28,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(
                 get_package_share_directory('dnn_node_example'),
-                'launch/hobot_dnn_node_example.launch.py')),
+                'launch/dnn_node_example.launch.py')),
         launch_arguments={
             'config_file': 'config/fcosworkconfig.json',
             'msg_pub_topic_name': '/hobot_dnn_detection',

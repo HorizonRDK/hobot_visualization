@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>hobot_visualization</name>
-  <version>2.0.1</version>
-  <description>hobot ai_msgs to visualization_msgs</description>
+  <version>2.0.0</version>
+  <description>TogetheROS hobot ai_msgs to visualization_msgs</description>
   <maintainer email="zixi01.chen@horizon.ai">zixi01.chen</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache License 2.0</license>
 
   <depend>rclcpp</depend>
   <depend>ai_msgs</depend>
@@ -15,7 +15,6 @@
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
-  <test_depend>dnn_node_example</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -101,7 +101,7 @@ colcon build --packages-select hobot_visualization \
 | 参数名                 | 类型        | 解释                                        | 是否必须 | 支持的配置           | 默认值                        |
 | ---------------------- | ----------- | ------------------------------------------- | -------- | -------------------- | ----------------------------- |
 | msg_pub_topic_name  | std::string | imagemarker转换为 | 否      | 根据实际部署环境配置 | /hobot_foxglove |
-| smart_msg_sub_topic_name  | std::string | 接收dnn节点的的topic名 | 否      | 需要与 ai_msgs 对应的话题名配置一致 | /hobot_agent |
+| smart_msg_sub_topic_name  | std::string | 接收dnn节点的的topic名 | 否      | 需要与 ai_msgs 对应的话题名配置一致 | /hobot_dnn_detection |
 
 ## 运行
 

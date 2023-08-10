@@ -1,5 +1,9 @@
 # Changelog for package hobot_visualization
 
+tros_2.0.2 (2023-08-10)
+------------------
+1. 更正launch文件配置。
+
 tros_2.0.1 (2023-07-14)
 ------------------
 1. 规范Rdkultra产品名。

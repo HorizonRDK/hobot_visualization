@@ -47,7 +47,7 @@ def generate_launch_description():
             {"in_mode": "shared_mem"},
             {"in_format": "nv12"},
             {"out_mode": "ros"},
-            {"out_format": "jpeg-compressed"},
+            {"out_format": "jpeg"},
             {"sub_topic": "/hbmem_img"},
             {"pub_topic": "/image_raw/compressed"}
         ],

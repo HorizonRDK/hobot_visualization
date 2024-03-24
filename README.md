@@ -1,64 +1,62 @@
-# 功能介绍
+English| [简体中文](./README_cn.md)
 
-hobot_visualization package 是地平线基于Ros2开发的 ai_msgs 话题消息转换为 visualization_msgs 话题消息，用于可视化相关数据。
+# Function Introduction
 
+The `hobot_visualization` package is developed by Horizon Robotics based on Ros2 to convert ai_msgs topic messages into visualization_msgs topic messages for visualizing relevant data.
 
-# 编译
+# Compilation
 
-## 依赖库
+## Dependency Libraries
 
-ros package：
+ROS packages:
 
 - ai_msgs
 - rclcpp
 - visualization_msgs
 
-'ai_msgs' 是地平线自定义的消息格式，用于算法模型推理后，发布推理结果，ai_msgs package定义在hobot_msgs中。
+`ai_msgs` is a custom message format defined by Horizon Robotics. It is used to publish inference results after algorithm model inference, and the `ai_msgs` package is defined in `hobot_msgs`.
 
-'rclcpp' 是 ROS2 中的一个C++客户端库，提供了用于创建 ROS2 节点、订阅和发布话题、调用服务、创建定时器等功能的API。
+`rclcpp` is a C++ client library in ROS2 that provides APIs for creating ROS2 nodes, subscribing and publishing topics, invoking services, creating timers, etc.
 
-'visualization_msgs' 是ROS2 中的一个消息包，用于可视化和显示机器人相关的数据。
+`visualization_msgs` is a message package in ROS2 used for visualizing and displaying robot-related data.
 
-## 开发环境
+## Development Environment
 
-- 编程语言: C/C++
-- 开发平台: X3/X86
-- 系统版本：Ubuntu 20.04
-- 编译工具链:Linux GCC 9.3.0/Linaro GCC 9.3.0
+- Programming Language: C/C++
+- Development Platform: X3/X86
+- System Version: Ubuntu 20.04
+- Compilation Toolchain: Linux GCC 9.3.0/Linaro GCC 9.3.0
 
-## 编译
+## Compilation
 
- 支持在X3 Ubuntu系统上编译和在PC上使用docker交叉编译两种方式。
+Supports compilation on X3 Ubuntu system and cross-compilation using docker on PC.
 
-### 编译选项
+### Compilation Options
 
 1. BUILD_HBMEM
-   - 零拷贝传输方式使能开关。Docker交叉编译时默认打开(ON), 编译时可以通过-DBUILD_HBMEM=OFF关闭。
-   - 在板端编译时，零拷贝传输方式使能开关默认是关闭的。如果需要依赖零拷贝，可以通过-DBUILD_HBMEM=ON打开。
-   - 如果打开，编译会依赖hbm_img_msgs package，并且需要使用tros进行编译。
-   - 如果关闭，编译和运行不依赖hbm_img_msgs pkg，支持使用原生ros和tros进行编译。
-   - 对于零拷贝通信方式，当前只支持订阅nv12格式图片。
+   - Enable switch for zero-copy transmission mode. It is enabled by default when cross-compiling with Docker (ON), and can be turned off during compilation by using `-DBUILD_HBMEM=OFF`.
+   - By default, the zero-copy transmission mode switch is turned off for compilation on the board side. If zero-copy dependency is needed, it can be enabled by using `-DBUILD_HBMEM=ON`.
+   - If enabled, the compilation will depend on the `hbm_img_msgs` package and requires compiling using tros.
+   - If disabled, the compilation and execution do not depend on the `hbm_img_msgs` package and support compilation using native ROS and tros.   
+   - For zero-copy communication, currently only supports subscribing to images in nv12 format.
 
-### Ubuntu板端编译X3版本
+### Compilation of X3 Version on Ubuntu System
 
-1. 编译环境确认
-   - 板端已安装X3 Ubuntu系统。
-   - 当前编译终端已设置TogetheROS环境变量：`source PATH/setup.bash`。其中PATH为TogetheROS的安装路径。
-   - 已安装ROS2编译工具colcon，安装命令：`pip install -U colcon-common-extensions`
+1. Confirmation of Compilation Environment
+   - X3 Ubuntu system is installed on the board.
+   - The current compilation terminal has set the TogetheROS environment variable: `source PATH/setup.bash`. Here, PATH is the installation path of TogetheROS.
+   - ROS2 compilation tool `colcon` is installed, installation command: `pip install -U colcon-common-extensions`.
 
-2. 编译
- 编译命令：`colcon build --packages-select hobot_visualization --cmake-args -DBUILD_HBMEM=ON`
+2. Compilation
+   Compilation command: `colcon build --packages-select hobot_visualization --cmake-args -DBUILD_HBMEM=ON`### Docker Cross Compilation X3 Version
 
+1. Compilation Environment Confirmation
 
-### Docker交叉编译X3版本
+   - Compiling in docker, with TogetheROS already installed in docker. For instructions on docker installation, cross compilation, TogetheROS compilation, and deployment, please refer to the README.md in the robot development platform repo.
 
-1. 编译环境确认
+2. Compilation
 
-   - 在docker中编译，并且docker中已经安装好TogetheROS。docker安装、交叉编译说明、TogetheROS编译和部署说明详见机器人开发平台 robot_dev_config repo中的README.md。
-
-2. 编译
-
-   - 编译命令：
+   - Compilation Command:
 
 ```shell
 export TARGET_ARCH=aarch64
@@ -73,15 +71,15 @@ colcon build --packages-select hobot_visualization \
    -DCMAKE_TOOLCHAIN_FILE=`pwd`/robot_dev_config/aarch64_toolchainfile.cmake
 ```
 
-### X86 Ubuntu系统上编译 X86版本
+### Compilation of X86 Version on X86 Ubuntu System
 
-1. 编译环境确认
+1. Compilation Environment Confirmation
 
-   - x86 ubuntu版本: ubuntu20.04
+   - X86 Ubuntu Version: Ubuntu 20.04
 
-2. 编译
+2. Compilation
 
-   - 编译命令：
+   - Compilation Command:
 
    ```shell
    colcon build --packages-select hobot_visualization  \
@@ -92,20 +90,18 @@ colcon build --packages-select hobot_visualization \
       -DTHIRD_PARTY=`pwd`/../sysroot_docker \
    ```
 
-## 注意事项
+## Notes
 
-# 使用介绍
+# User Guide
 
-## 参数
-
-| 参数名                 | 类型        | 解释                                        | 是否必须 | 支持的配置           | 默认值                        |
+## Parameters| Parameter Name          | Type         | Description                                   | Required  | Supported Configurations | Default Value               |
 | ---------------------- | ----------- | ------------------------------------------- | -------- | -------------------- | ----------------------------- |
-| msg_pub_topic_name  | std::string | imagemarker转换为 | 否      | 根据实际部署环境配置 | /hobot_visualization |
-| smart_msg_sub_topic_name  | std::string | 接收dnn节点的的topic名 | 否      | 需要与 ai_msgs 对应的话题名配置一致 | /hobot_dnn_detection |
+| msg_pub_topic_name  | std::string | Convert imagemarker to | No      | Configured based on actual deployment environment | /hobot_visualization |
+| smart_msg_sub_topic_name  | std::string | Topic name for receiving from dnn node | No      | Should be consistent with the corresponding topic name in ai_msgs | /hobot_dnn_detection |
 
-## 运行
+## Running
 
-编译成功后，将生成的install路径拷贝到地平线旭日X3开发板上（如果是在X3上编译，忽略拷贝步骤），并执行如下命令运行：
+After successful compilation, copy the generated install folder to the Horizon X3 development board (skip the copying step if compiling on X3), and run the following commands:
 
 
 ### **Ubuntu X3**
@@ -114,18 +110,18 @@ colcon build --packages-select hobot_visualization \
 export COLCON_CURRENT_PREFIX=./install
 source ./install/setup.bash
 
-# 启动visualization node
+# Start visualization node
 ros2 run hobot_visualization hobot_visualization
 
 ```
 
-### **Ubuntu X3 Launch启动**
+### **Ubuntu X3 Launch**
 
 ```shell
 export COLCON_CURRENT_PREFIX=./install
 source ./install/setup.bash
 
-# 启动visualization node
+# Start visualization node
 ros2 launch hobot_visualization hobot_vis_render.launch.py
 ```
 
@@ -135,23 +131,20 @@ ros2 launch hobot_visualization hobot_vis_render.launch.py
 export ROS_LOG_DIR=/userdata/
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:./install/lib/
 
-# 启动visualization node检测node
+# Start visualization node and detection node
 ./install/lib/hobot_visualization/hobot_visualization
 ```
 
-## X86 Ubuntu系统上运行
+## Running on X86 Ubuntu System
 
 ```shell
 export COLCON_CURRENT_PREFIX=./install
 source ./install/setup.bash
 
 ros2 launch hobot_visualization hobot_vis_render.launch.py
-```
+```# Result Analysis
 
-
-# 结果分析
-
-## X3 日志信息
+## X3 Log Information
 
 ```bash
 [WARN] [1686109522.331820512] [VisNode]: This is hobot visualization render node!
@@ -164,6 +157,6 @@ ros2 launch hobot_visualization hobot_vis_render.launch.py
 [INFO] [1686109524.573302027] [VisNode]: smart msg: Recved msg, frame_id: 2234, stamp: 1686109524_505037056, targets size: 1 has roi num: 1 has capture num: 0, roi type: surfboard, roi x1: 1, roi y1: 68, roi x2: 264, roi y2: 218, has attr num: 0
 ```
 
-## foxglove 效果展示
-foxglove下，visualization msg 和 image融合效果渲染图：
+## Foxglove Effect Display
+Under foxglove, the fusion rendering of visualization message and image:
 ![image](./render/visualization_render.png)

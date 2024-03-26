@@ -48,7 +48,9 @@ Supports compilation on X3 Ubuntu system and cross-compilation using docker on P
    - ROS2 compilation tool `colcon` is installed, installation command: `pip install -U colcon-common-extensions`.
 
 2. Compilation
-   Compilation command: `colcon build --packages-select hobot_visualization --cmake-args -DBUILD_HBMEM=ON`### Docker Cross Compilation X3 Version
+   Compilation command: `colcon build --packages-select hobot_visualization --cmake-args -DBUILD_HBMEM=ON`
+
+### Docker Cross Compilation X3 Version
 
 1. Compilation Environment Confirmation
 
@@ -94,7 +96,8 @@ colcon build --packages-select hobot_visualization \
 
 # User Guide
 
-## Parameters| Parameter Name          | Type         | Description                                   | Required  | Supported Configurations | Default Value               |
+## Parameters
+| Parameter Name          | Type         | Description                                   | Required  | Supported Configurations | Default Value               |
 | ---------------------- | ----------- | ------------------------------------------- | -------- | -------------------- | ----------------------------- |
 | msg_pub_topic_name  | std::string | Convert imagemarker to | No      | Configured based on actual deployment environment | /hobot_visualization |
 | smart_msg_sub_topic_name  | std::string | Topic name for receiving from dnn node | No      | Should be consistent with the corresponding topic name in ai_msgs | /hobot_dnn_detection |
@@ -142,7 +145,8 @@ export COLCON_CURRENT_PREFIX=./install
 source ./install/setup.bash
 
 ros2 launch hobot_visualization hobot_vis_render.launch.py
-```# Result Analysis
+```
+# Result Analysis
 
 ## X3 Log Information
 
@@ -159,4 +163,5 @@ ros2 launch hobot_visualization hobot_vis_render.launch.py
 
 ## Foxglove Effect Display
 Under foxglove, the fusion rendering of visualization message and image:
+
 ![image](./render/visualization_render.png)
